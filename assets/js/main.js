@@ -1,5 +1,5 @@
 /* DBL Avocat — maquette « Chemise de dossier » */
-import { initBureau } from './gl.js?v=3';
+import { initBureau } from './gl.js?v=4';
 
 const html = document.documentElement;
 const page = html.dataset.page || '';
@@ -65,8 +65,9 @@ function sectionCourante() {
 function initCalme() {
   $$('[data-calme]').forEach((b) => {
     b.setAttribute('aria-pressed', calme ? 'true' : 'false');
+    if (b.classList.contains('pied__calme')) b.textContent = calme ? 'Réactiver les animations' : 'Réduire les animations';
     b.addEventListener('click', () => {
-      const s = sectionCourante();
+      const s = b.closest('.pied') || sectionCourante();
       try {
         localStorage.setItem('dbl-calme', calme ? '0' : '1');
         if (s && s.id) {
@@ -200,7 +201,7 @@ function initLiens() {
     }
     if (calme || !gsap) return;
     e.preventDefault();
-    tournerPage(url.href);
+    tournerPage(url, a);
   });
   window.addEventListener('pageshow', (e) => {
     if (e.persisted) {
@@ -211,24 +212,36 @@ function initLiens() {
     }
   });
 }
-function tournerPage(href) {
+const TITRES_PAGES = { '/': 'Accueil', '/matieres': 'Matières pratiquées', '/honoraires': 'Honoraires et rendez-vous', '/mentions-legales': 'Mentions légales' };
+function titreDestination(url, lien) {
+  if (url.hash === '#rendez-vous') return 'Rendez-vous';
+  return TITRES_PAGES[normaliser(url.pathname)] || (lien.textContent || '').trim().slice(0, 40) || 'Accueil';
+}
+function tournerPage(url, lien) {
   const t = $('.tourne');
   const f = $('.tourne__feuille');
-  try { sessionStorage.setItem('dbl-tourne', '1'); } catch (e) {}
+  const titre = titreDestination(url, lien);
+  const zone = $('.tourne__titre');
+  if (zone) zone.textContent = titre;
+  try { sessionStorage.setItem('dbl-tourne', '1'); sessionStorage.setItem('dbl-tourne-titre', titre); } catch (e) {}
   t.style.visibility = 'visible';
-  gsap.fromTo(f, { xPercent: 105, rotate: 3, transformOrigin: '0% 100%' }, {
-    xPercent: 0, rotate: 0, duration: 0.55, ease: 'power3.inOut',
-    onComplete: () => { location.href = href; },
+  const contenu = $('.tourne__contenu');
+  gsap.fromTo(f, { xPercent: 104, rotate: 2.5, transformOrigin: '0% 100%' }, {
+    xPercent: 0, rotate: 0, duration: 0.5, ease: 'power3.inOut',
+    onComplete: () => { location.href = url.href; },
   });
+  if (contenu) gsap.fromTo(contenu, { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.45, ease: 'power2.out', delay: 0.18 });
 }
 function arrivee() {
   if (!html.classList.contains('arrivee') || !gsap) { html.classList.remove('arrivee'); return Promise.resolve(); }
   const f = $('.tourne__feuille');
+  const contenu = $('.tourne__contenu');
+  if (contenu) gsap.to(contenu, { opacity: 0, x: -50, duration: 0.4, ease: 'power2.in', delay: 0.12 });
   return new Promise((r) => {
     gsap.fromTo(f, { xPercent: 0, rotate: 0 }, {
-      xPercent: -108, rotate: -3, transformOrigin: '100% 100%', duration: 0.65, ease: 'power3.inOut', delay: 0.05,
-      onStart: () => setTimeout(r, 220),
-      onComplete: () => { html.classList.remove('arrivee'); gsap.set(f, { clearProps: 'transform' }); },
+      xPercent: -108, rotate: -3, transformOrigin: '100% 100%', duration: 0.7, ease: 'power3.inOut', delay: 0.18,
+      onStart: () => { html.style.backgroundColor = ''; r(); },
+      onComplete: () => { html.classList.remove('arrivee'); gsap.set(f, { clearProps: 'transform' }); if (contenu) gsap.set(contenu, { clearProps: 'all' }); },
     });
   });
 }
@@ -241,7 +254,7 @@ function fermerMenu() {
   const b = $('.menu-bouton');
   if (!m || !m.classList.contains('ouvert')) return;
   m.classList.remove('ouvert');
-  b && b.setAttribute('aria-expanded', 'false');
+  if (b) { b.setAttribute('aria-expanded', 'false'); b.textContent = 'Menu'; }
   document.body.style.overflow = '';
 }
 function initMenu() {
@@ -254,9 +267,10 @@ function initMenu() {
     b.setAttribute('aria-expanded', String(ouvert));
     b.textContent = ouvert ? 'Fermer' : 'Menu';
     document.body.style.overflow = ouvert ? 'hidden' : '';
-    if (ouvert) { const l = m.querySelector('a'); l && l.focus(); }
+    if (ouvert) { const l = m.querySelector('a'); l && setTimeout(() => l.focus({ preventScroll: true }), 80); }
   });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { fermerMenu(); b.textContent = 'Menu'; } });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && m.classList.contains('ouvert')) { fermerMenu(); b.focus(); } });
+  window.addEventListener('resize', () => { if (window.innerWidth > 1100) fermerMenu(); }, { passive: true });
 }
 
 /* ---------------------------------------------------------
@@ -510,8 +524,8 @@ function compteurs() {
 /* ---------------------------------------------------------
    ACCUEIL
    --------------------------------------------------------- */
-function introEtUne() {
-  const tl = gsap.timeline();
+function introEtUne(delai = 0) {
+  const tl = gsap.timeline({ delay: delai });
   const intro = html.classList.contains('intro');
   const mots = $$('.une__titre span');
   const qui = $('.une__qui');
@@ -542,13 +556,16 @@ function introEtUne() {
       .to(ligne, { opacity: 1, duration: 0.3 }, 0.25)
       .fromTo(c, { scale: 2.1, opacity: 0, rotate: 18 }, { scale: 1, opacity: 1, rotate: -12, duration: 0.3, ease: 'back.out(2.4)' }, 0.52)
       .to(couv, { y: 3, duration: 0.05, yoyo: true, repeat: 1 }, 0.78)
-      .to(couv, { rotateX: 96, opacity: 0.2, duration: 0.62, ease: 'power3.in' }, 0.86)
+      .to($('.intro-ecran__contenu'), { opacity: 0, x: -36, duration: 0.3, ease: 'power2.in' }, 0.84)
+      .add(() => { html.style.backgroundColor = ''; }, 0.86)
+      .fromTo(couv, { rotationY: 0, transformOrigin: '0% 50%' }, { rotationY: 96, duration: 0.8, ease: 'power2.in' }, 0.9)
+      .to(couv, { boxShadow: '0 40px 120px rgba(0,0,0,0)', duration: 0.6 }, 1.1)
       .add(() => {
         ecran.style.display = 'none';
         html.classList.remove('intro');
         try { sessionStorage.setItem('dbl-intro', '1'); } catch (e) {}
-      }, 1.48);
-    debut = 0.86;
+      }, 1.72);
+    debut = 0.95;
   }
   tl.to(mots, { keyframes: { opacity: [0, 1, 1], scale: [1.18, 0.98, 1] }, duration: 0.42, ease: 'power3.out', stagger: 0.14, transformOrigin: '0% 70%' }, debut + 0.05)
     .to(dos, { opacity: 1, y: 0, rotate: -1.5, duration: 0.8, ease: 'power3.out' }, debut + 0.05)
@@ -745,9 +762,9 @@ function finalAccueil() {
 /* ---------------------------------------------------------
    MATIÈRES
    --------------------------------------------------------- */
-function pageMatieres() {
+function pageMatieres(delai = 0) {
   const chemises = $$('.pile__chemise');
-  const tl = gsap.timeline();
+  const tl = gsap.timeline({ delay: delai });
   tl.fromTo('.pile__fond', { scale: 1.08, opacity: 0 }, { scale: 1, opacity: 1, duration: 1, ease: 'power3.out' }, 0)
     .fromTo(chemises, { y: 120, rotate: 0, opacity: 0 }, { y: (i) => -(chemises.length - 1 - i) * 26, rotate: (i, el) => parseFloat(el.dataset.r || 0), opacity: 1, duration: 0.8, ease: 'power3.out', stagger: 0.09 }, 0.15)
     .fromTo('.m-une__titre', { clipPath: 'inset(-10% 100% -20% 0%)' }, { clipPath: 'inset(-10% 0% -20% 0%)', duration: 0.9, ease: 'power3.inOut' }, 0.1)
@@ -798,8 +815,8 @@ function onglets() {
 /* ---------------------------------------------------------
    HONORAIRES ET RENDEZ-VOUS
    --------------------------------------------------------- */
-function pageHonoraires() {
-  const tl = gsap.timeline();
+function pageHonoraires(delai = 0) {
+  const tl = gsap.timeline({ delay: delai });
   tl.fromTo('.h-une__titre', { clipPath: 'inset(-10% 100% -20% 0%)' }, { clipPath: 'inset(-10% 0% -20% 0%)', duration: 0.9, ease: 'power3.inOut' }, 0.05)
     .fromTo('.convention__img', { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 1, ease: 'power3.out' }, 0)
     .fromTo('.convention__feuille', { y: 80, rotate: 6, opacity: 0 }, { y: 0, rotate: -3, opacity: 1, duration: 0.8, ease: 'power3.out' }, 0.35)
@@ -970,13 +987,13 @@ function rendezVous() {
 /* ---------------------------------------------------------
    404 et pages simples
    --------------------------------------------------------- */
-function pageSimple() {
+function pageSimple(delai = 0) {
   const c = $('.p404 .cachet');
-  if (c) cachetTombe(c, { rot: -8, delay: 0.4 });
+  if (c) cachetTombe(c, { rot: -8, delay: 0.4 + delai });
   const t = $('.p404 h1, .legal h1');
-  if (t) gsap.fromTo(t, { clipPath: 'inset(-10% 100% -20% 0%)' }, { clipPath: 'inset(-10% 0% -20% 0%)', duration: 0.9, ease: 'power3.inOut' });
+  if (t) gsap.fromTo(t, { clipPath: 'inset(-10% 100% -20% 0%)' }, { clipPath: 'inset(-10% 0% -20% 0%)', duration: 0.9, ease: 'power3.inOut', delay: delai });
   const img = $('.p404 .cadre-photo');
-  if (img) gsap.fromTo(img, { opacity: 0, rotate: 4, y: 40 }, { opacity: 1, rotate: -1.5, y: 0, duration: 0.9, ease: 'power3.out' });
+  if (img) gsap.fromTo(img, { opacity: 0, rotate: 4, y: 40 }, { opacity: 1, rotate: -1.5, y: 0, duration: 0.9, ease: 'power3.out', delay: delai });
 }
 
 /* ---------------------------------------------------------
@@ -997,6 +1014,7 @@ async function demarrer() {
   mesurer();
 
   if (calme || !gsap || !ScrollTrigger) {
+    html.style.backgroundColor = '';
     $$('[data-compteur]').forEach((el) => el.setAttribute('aria-label', el.textContent.trim()));
     if (page === 'matieres') onglets();
     if (!restaurerSection() && location.hash) allerA(location.hash, true);
@@ -1007,11 +1025,12 @@ async function demarrer() {
   initLampe();
   initCurseur();
   initMagnetiques();
-  const arrive = arrivee();
+  const delai = html.classList.contains('arrivee') ? 0.32 : 0;
 
   if (page === 'accueil') {
     traces();
-    const tl = introEtUne();
+    const tl = introEtUne(delai);
+    arrivee();
     if (lampe) {
       if (html.classList.contains('intro')) gsap.delayedCall(1.05, () => lampe.demarrer());
       else lampe.demarrer();
@@ -1027,10 +1046,10 @@ async function demarrer() {
   } else {
     traces();
     if (lampe) lampe.demarrer();
-    await arrive;
-    if (page === 'matieres') { pageMatieres(); onglets(); }
-    if (page === 'honoraires') pageHonoraires();
-    if (page === 'simple') pageSimple();
+    if (page === 'matieres') { pageMatieres(delai); onglets(); }
+    if (page === 'honoraires') pageHonoraires(delai);
+    if (page === 'simple') pageSimple(delai);
+    arrivee();
   }
   titresImprimes();
   lignesImprimees();

@@ -24,20 +24,21 @@
 <link rel="preload" href="/assets/fonts/newsreader-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/newsreader-opsz-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/hanken-grotesk-wght.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=3">
+<link rel="stylesheet" href="/assets/css/site.css?v=4">
 <script>
 (function(d){var h=d.documentElement;h.classList.remove('no-js');h.classList.add('js','fonts-pending');var calme=false,arrivee=false;
 try{var c=localStorage.getItem('dbl-calme');calme=c==='1'||(c===null&&matchMedia('(prefers-reduced-motion: reduce)').matches);}catch(e){}
 if(calme)h.classList.add('calme');
 try{arrivee=sessionStorage.getItem('dbl-tourne')==='1';sessionStorage.removeItem('dbl-tourne');if(!calme&&arrivee)h.classList.add('arrivee');
 if(!calme&&!arrivee&&h.getAttribute('data-page')==='accueil'&&!sessionStorage.getItem('dbl-intro'))h.classList.add('intro');}catch(e){}
+h.style.backgroundColor=(h.classList.contains('intro')||h.classList.contains('arrivee'))?'#efe8da':'#101b30';
 setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
 </script>
 <script src="/assets/js/vendor/gsap.min.js" defer></script>
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/SplitText.min.js" defer></script>
-<link rel="modulepreload" href="/assets/js/gl.js?v=3">
-<script type="module" src="/assets/js/main.js?v=3"></script>
+<link rel="modulepreload" href="/assets/js/gl.js?v=4">
+<script type="module" src="/assets/js/main.js?v=4"></script>
 </head>
 <body>
 <a class="lien-evitement" href="#contenu">Aller au contenu</a>
@@ -49,7 +50,8 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
   </filter>
 </svg>
 <div class="bureau-fond" aria-hidden="true"><div class="bureau-fond__repli"></div></div>
-<div class="tourne" aria-hidden="true"><div class="tourne__feuille"></div></div>
+<div class="tourne" aria-hidden="true"><div class="tourne__feuille"><div class="tourne__contenu"><span class="tourne__badge"><img src="/assets/img/logo-od.webp" width="302" height="240" alt=""></span><p class="tourne__titre">Page introuvable</p><p class="tourne__sous">Maître Ousmane Dambel, avocat au Barreau de Bruxelles</p></div></div></div>
+<script>try{var tt=sessionStorage.getItem('dbl-tourne-titre');if(tt)document.querySelector('.tourne__titre').textContent=tt}catch(e){}</script><!--/tourne-->
 <div class="curseur" aria-hidden="true"><div class="curseur__anneau"></div><div class="curseur__point"></div><div class="curseur__label">ouvrir</div></div>
 <header class="entete">
   <div class="gout entete__in">
@@ -62,7 +64,6 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
       <a class="nav__lien" href="/matieres">Matières</a>
       <a class="nav__lien" href="/honoraires">Honoraires</a>
       <a class="entete__tel" href="tel:+3225021055">+32 2 502 10 55</a>
-      <button class="calme-bascule" type="button" aria-pressed="false" data-calme><span class="calme-bascule__pastille" aria-hidden="true"></span><span>Calme</span><span class="visuellement-cache"> : réduire les animations</span></button>
       <a class="bouton magnetique" href="/honoraires#rendez-vous"><span class="bouton__txt">Rendez-vous</span></a>
       <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-mobile">Menu</button>
     </nav>
@@ -101,7 +102,7 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
   </section>
 </main>
 
-<footer class="pied">
+<footer class="pied" id="pied">
   <div class="gout">
     <div class="pied__grille">
       <div>
@@ -132,6 +133,7 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
     </div>
     <div class="pied__bas">
       <span>© 2026 Cabinet DBL Avocat</span>
+      <button class="pied__calme" type="button" aria-pressed="false" data-calme>Réduire les animations</button>
       <span>Maquette de travail, non indexée. Contenus repris du site actuel, à valider par Maître Dambel.</span>
     </div>
   </div>

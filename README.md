@@ -60,4 +60,5 @@ Site statique (HTML, CSS, JavaScript) sans étape de construction, prêt pour Ve
 ## Options utiles
 
 - `?webgl=0` à la fin d'une adresse : version sans WebGL.
-- Bouton « Calme » dans l'en-tête : version sans animations, mémorisée dans le navigateur ; activée d'office si le système demande de réduire les animations.
+- Lien « Réduire les animations » dans le pied de page : version sans animations, mémorisée dans le navigateur ; activée d'office si le système demande de réduire les animations (réglage d'accessibilité du Mac, de Windows, d'iOS ou d'Android).
+- Transitions : ouverture en chemise qui s'ouvre (première visite de l'accueil), changement de page par une feuille qui porte le nom de la page de destination, menu mobile qui se déroule.
