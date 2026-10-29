@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="fr" class="no-js" data-page="honoraires">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Honoraires et rendez-vous | Maître Ousmane Dambel, avocat à Bruxelles</title>
+<meta name="description" content="Honoraires transparents : première consultation de 45 minutes à 150 €, taux horaire de 180 €, forfaits indicatifs. Demandez un rendez-vous au cabinet, avenue Paul-Henri Spaak.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#101b30">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_BE">
+<meta property="og:site_name" content="Cabinet DBL Avocat">
+<meta property="og:title" content="Honoraires et rendez-vous | Maître Ousmane Dambel, avocat à Bruxelles">
+<meta property="og:description" content="Honoraires transparents : première consultation de 45 minutes à 150 €, taux horaire de 180 €, forfaits indicatifs. Demandez un rendez-vous au cabinet, avenue Paul-Henri Spaak.">
+<meta property="og:url" content="https://dbl-avocat-maquette.vercel.app/honoraires">
+<meta property="og:image" content="https://dbl-avocat-maquette.vercel.app/assets/og/honoraires.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Honoraires et rendez-vous au cabinet DBL Avocat">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dbl-avocat-maquette.vercel.app/assets/og/honoraires.jpg">
+<link rel="preload" href="/assets/fonts/newsreader-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/newsreader-opsz-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/hanken-grotesk-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css?v=1">
+<script>
+(function(d){var h=d.documentElement;h.classList.remove('no-js');h.classList.add('js','fonts-pending');var calme=false,arrivee=false;
+try{var c=localStorage.getItem('dbl-calme');calme=c==='1'||(c===null&&matchMedia('(prefers-reduced-motion: reduce)').matches);}catch(e){}
+if(calme)h.classList.add('calme');
+try{arrivee=sessionStorage.getItem('dbl-tourne')==='1';sessionStorage.removeItem('dbl-tourne');if(!calme&&arrivee)h.classList.add('arrivee');
+if(!calme&&!arrivee&&h.getAttribute('data-page')==='accueil'&&!sessionStorage.getItem('dbl-intro'))h.classList.add('intro');}catch(e){}
+setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
+</script>
+<script src="/assets/js/vendor/gsap.min.js" defer></script>
+<script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="/assets/js/vendor/SplitText.min.js" defer></script>
+<link rel="modulepreload" href="/assets/js/gl.js?v=1">
+<script type="module" src="/assets/js/main.js?v=1"></script>
+</head>
+<body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="grain-encre" x="-10%" y="-10%" width="120%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="b"/>
+    <feColorMatrix in="b" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -1.5 0 0 0 1.62" result="m"/>
+    <feComposite in="SourceGraphic" in2="m" operator="in"/>
+  </filter>
+</svg>
+<div class="bureau-fond" aria-hidden="true"><div class="bureau-fond__repli"></div></div>
+<div class="tourne" aria-hidden="true"><div class="tourne__feuille"></div></div>
+<div class="curseur" aria-hidden="true"><div class="curseur__anneau"></div><div class="curseur__point"></div><div class="curseur__label">ouvrir</div></div>
+<header class="entete">
+  <div class="gout entete__in">
+    <a class="marque" href="/" aria-label="Cabinet DBL Avocat, accueil">
+      <span class="marque__dbl">dbl</span>
+      <span class="marque__nom"><b>Maître Ousmane Dambel</b>Avocat au Barreau de Bruxelles</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a class="nav__lien" href="/#cabinet">Le cabinet</a>
+      <a class="nav__lien" href="/matieres">Matières</a>
+      <a class="nav__lien" href="/honoraires" aria-current="page">Honoraires</a>
+      <a class="entete__tel" href="tel:+3225021055">+32 2 502 10 55</a>
+      <button class="calme-bascule" type="button" aria-pressed="false" data-calme><span class="calme-bascule__pastille" aria-hidden="true"></span><span>Calme</span><span class="visuellement-cache"> : réduire les animations</span></button>
+      <a class="bouton magnetique" href="/honoraires#rendez-vous"><span class="bouton__txt">Rendez-vous</span></a>
+      <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-mobile">Menu</button>
+    </nav>
+  </div>
+</header>
+<nav class="menu-mobile" id="menu-mobile" aria-label="Menu">
+  <a href="/">Accueil</a>
+  <a href="/#cabinet">Le cabinet</a>
+  <a href="/matieres">Matières pratiquées</a>
+  <a href="/honoraires">Honoraires</a>
+  <a href="/honoraires#rendez-vous">Rendez-vous</a>
+  <div class="menu-mobile__pied">
+    <a href="tel:+3225021055">+32 2 502 10 55</a>
+    <a href="mailto:info@dbl-avocat.be">info@dbl-avocat.be</a>
+  </div>
+</nav>
+
+<main id="contenu">
+
+  <section class="h-une s-nuit" id="une" data-folio="Honoraires" aria-labelledby="titre-h">
+    <div class="gout h-une__grille">
+      <div>
+        <h1 class="h-une__titre" id="titre-h">Honoraires</h1>
+        <p class="chapeau" style="margin-top:1.2em">Les honoraires du cabinet sont fixés en toute transparence avec le client, en tenant compte de la nature et de la complexité du dossier, des diligences à accomplir et du temps consacré à son traitement.</p>
+        <div class="une__actions">
+          <a class="bouton magnetique" href="#rendez-vous"><span class="bouton__txt">Demander un rendez-vous</span></a>
+          <a class="une__tel lien-encre" href="#tarifs">Voir les tarifs indicatifs</a>
+        </div>
+      </div>
+      <div class="convention">
+        <div class="cadre-photo convention__img">
+          <picture>
+            <source media="(max-width: 899px)" srcset="/assets/img/honoraires-ouverture-petit.webp 640w, /assets/img/honoraires-ouverture-grand.webp 1168w" sizes="92vw">
+            <img src="/assets/img/honoraires-ouverture-grand.webp" srcset="/assets/img/honoraires-ouverture-petit.webp 640w, /assets/img/honoraires-ouverture-grand.webp 1168w" sizes="46vw" width="1168" height="657" alt="Plume, encrier et feuille de papier sur un bureau" fetchpriority="high">
+          </picture>
+        </div>
+        <div class="convention__feuille" aria-hidden="true">
+          <p class="couv-convention">Convention d’honoraires</p>
+          <div class="lignes"><span></span><span></span><span></span></div>
+          <div class="signature">
+            <div class="signature__ligne">Lu et approuvé
+              <svg viewBox="0 0 210 70"><path data-trace d="M6 48 C 22 14, 38 12, 42 38 S 56 66, 72 34 S 94 6, 104 38 S 124 58, 140 30 S 168 18, 204 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section s-papier" id="modalites" data-folio="Modalités" aria-labelledby="t-mod">
+    <div class="gout">
+      <h2 class="titre-section" id="t-mod" data-titre>Trois façons de fixer les honoraires</h2>
+      <p class="chapeau" style="margin-top:.8em">Lors du premier entretien, les modalités d’intervention et de facturation vous sont expliquées. Les frais et débours éventuels liés au dossier sont précisés séparément.</p>
+      <div class="modalites">
+        <div class="fiche">
+          <button class="fiche__bouton" type="button" aria-pressed="false">
+            <span class="fiche__face fiche__face--avant">
+              <span class="fiche__titre">Au taux horaire</span>
+              <svg class="fiche__dessin" viewBox="0 0 200 90" aria-hidden="true"><circle cx="100" cy="45" r="34" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M100 45 V22 M100 45 L118 54" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M20 80 H180" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5"/></svg>
+              <span class="fiche__indice">Retourner la fiche</span>
+            </span>
+            <span class="fiche__face fiche__face--arriere">
+              <span class="fiche__titre">Au taux horaire</span>
+              <span class="fiche__texte">Facturation au temps passé sur votre dossier. Taux indicatif : 180 € de l’heure.</span>
+              <span class="fiche__indice">Retourner la fiche</span>
+            </span>
+          </button>
+        </div>
+        <div class="fiche">
+          <button class="fiche__bouton" type="button" aria-pressed="false">
+            <span class="fiche__face fiche__face--avant">
+              <span class="fiche__titre">Au forfait</span>
+              <svg class="fiche__dessin" viewBox="0 0 200 90" aria-hidden="true"><rect x="58" y="14" width="84" height="62" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M58 32 H142" stroke="currentColor" stroke-width="1.2"/><path d="M72 48 H128 M72 60 H112" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="132" cy="70" r="11" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              <span class="fiche__indice">Retourner la fiche</span>
+            </span>
+            <span class="fiche__face fiche__face--arriere">
+              <span class="fiche__titre">Au forfait</span>
+              <span class="fiche__texte">Un montant fixe pour une procédure ou un dossier déterminé, lorsque la nature de l’intervention le permet. Idéal pour une prévisibilité budgétaire.</span>
+              <span class="fiche__indice">Retourner la fiche</span>
+            </span>
+          </button>
+        </div>
+        <div class="fiche">
+          <button class="fiche__bouton" type="button" aria-pressed="false">
+            <span class="fiche__face fiche__face--avant">
+              <span class="fiche__titre">Autre modalité convenue</span>
+              <svg class="fiche__dessin" viewBox="0 0 200 90" aria-hidden="true"><path d="M40 60 C 70 20, 90 70, 110 40 S 150 30, 162 52" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M30 76 H170" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5"/></svg>
+              <span class="fiche__indice">Retourner la fiche</span>
+            </span>
+            <span class="fiche__face fiche__face--arriere">
+              <span class="fiche__titre">Autre modalité</span>
+              <span class="fiche__texte">Toute autre modalité convenue préalablement avec vous, puis inscrite dans la convention d’honoraires.</span>
+              <span class="fiche__indice">Retourner la fiche</span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section s-papier" id="tarifs" data-folio="Tarifs indicatifs" aria-labelledby="t-tarifs">
+    <div class="gout">
+      <h2 class="titre-section" id="t-tarifs" data-titre>Tarifs indicatifs</h2>
+      <div class="tarifs-page__grille">
+        <div>
+          <table class="tableau-tarifs">
+            <caption class="visuellement-cache">Honoraires</caption>
+            <thead><tr><th scope="col">Type</th><th scope="col">Description</th><th scope="col">Tarif indicatif</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Consultation</th><td class="desc">Première consultation pour évaluer votre dossier, 45 minutes</td><td class="montant">150,00 €</td></tr>
+              <tr><th scope="row">Taux horaire</th><td class="desc">Facturation au temps passé sur votre dossier</td><td class="montant">180,00 € / h</td></tr>
+              <tr><th scope="row">Forfait</th><td class="desc">Montant fixe pour une procédure ou un dossier déterminé</td><td class="montant">selon la procédure</td></tr>
+            </tbody>
+          </table>
+          <table class="tableau-tarifs" style="margin-top:34px">
+            <caption>Exemples de forfaits</caption>
+            <thead><tr><th scope="col">Dossier</th><th scope="col">Juridiction</th><th scope="col">Tarif indicatif</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Procédure</th><td class="desc">Justice de paix</td><td class="montant">800 € – 1 000 €</td></tr>
+              <tr><th scope="row">Procédure</th><td class="desc">Tribunal de police</td><td class="montant">850 € – 1 200 €</td></tr>
+              <tr><th scope="row">Licenciement</th><td class="desc">Tribunal du travail</td><td class="montant">2 600 € – 3 000 €</td></tr>
+            </tbody>
+          </table>
+          <p style="margin-top:22px;color:var(--graphite)">Les tarifs sont donnés à titre indicatif et peuvent varier selon la complexité du dossier. Une convention d’honoraires est établie en début de relation pour fixer précisément les termes de l’accord.</p>
+          <p class="postit postit--bloc"><strong>À préciser :</strong> montants hors TVA ou TVA comprise. Aide juridique (pro deo) : le cabinet l’accepte-t-il ?</p>
+        </div>
+        <aside class="estimateur" aria-labelledby="t-est">
+          <h3 id="t-est">Quel ordre de grandeur ?</h3>
+          <label for="estimateur-choix">Votre démarche</label>
+          <select id="estimateur-choix">
+            <option value="consultation">Une première consultation</option>
+            <option value="horaire">Un conseil au temps passé</option>
+            <option value="paix">Une procédure en justice de paix</option>
+            <option value="police">Une procédure au tribunal de police</option>
+            <option value="licenciement">Un licenciement, tribunal du travail</option>
+            <option value="autre">Autre situation</option>
+          </select>
+          <div class="estimateur__resultat" aria-live="polite">
+            <div class="estimateur__montant" data-estimateur-montant>150 €</div>
+            <p class="estimateur__detail" data-estimateur-detail>Première consultation de 45 minutes pour évaluer votre dossier.</p>
+          </div>
+          <p class="mono" style="margin-top:14px;color:var(--graphite)">Indicatif, sans engagement : seule la convention d’honoraires fait foi.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section rdv s-papier" id="rendez-vous" data-folio="Rendez-vous" aria-labelledby="t-rdv">
+    <div class="gout rdv__grille">
+      <div>
+        <h2 class="titre-section" id="t-rdv" data-titre>Demander un rendez-vous</h2>
+        <p class="chapeau" style="margin-top:.8em">Le cabinet reçoit sur rendez-vous, en français. Indiquez votre demande : le cabinet vous recontacte pour confirmer le jour et l’heure.</p>
+        <div class="cadre-photo cadre-photo--32" style="margin-top:28px"><img src="/assets/img/rendezvous-salle-grand.webp" srcset="/assets/img/rendezvous-salle-petit.webp 600w, /assets/img/rendezvous-salle-grand.webp 1168w" sizes="(max-width: 899px) 92vw, 38vw" width="1168" height="778" alt="Salle de consultation avec deux fauteuils et une bibliothèque" loading="lazy"></div>
+        <dl class="coordonnees">
+          <div><dt>Adresse</dt><dd>Avenue Paul-Henri Spaak 17/1, 1060 Bruxelles</dd></div>
+          <div><dt>Téléphone</dt><dd><a class="lien-encre" href="tel:+3225021055">+32 2 502 10 55</a> · GSM <a class="lien-encre" href="tel:+32479702461">+32 479 70 24 61</a></dd></div>
+          <div><dt>E-mail</dt><dd><a class="lien-encre" href="mailto:info@dbl-avocat.be">info@dbl-avocat.be</a></dd></div>
+        </dl>
+      </div>
+      <div>
+        <form class="formulaire" id="formulaire-rdv" novalidate>
+          <div class="etapes-barre" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <p class="visuellement-cache" aria-live="polite" data-annonce></p>
+
+          <fieldset class="etape">
+            <legend>Quelle matière ?</legend>
+            <p class="etape__aide">Choisissez celle qui se rapproche le plus de votre situation.</p>
+            <div class="choix">
+              <label><input type="radio" name="matiere" value="etrangers"><span>Droit des étrangers</span></label>
+              <label><input type="radio" name="matiere" value="affaires"><span>Droit des affaires</span></label>
+              <label><input type="radio" name="matiere" value="immobilier"><span>Droit immobilier</span></label>
+              <label><input type="radio" name="matiere" value="travail"><span>Droit du travail</span></label>
+              <label><input type="radio" name="matiere" value="famille"><span>Droit de la famille</span></label>
+              <label><input type="radio" name="matiere" value="autre"><span>Autre question</span></label>
+            </div>
+            <p class="erreur" aria-live="polite"></p>
+          </fieldset>
+
+          <fieldset class="etape" hidden>
+            <legend>Vous êtes</legend>
+            <p class="etape__aide">Le cabinet intervient pour les particuliers, les indépendants et les entreprises.</p>
+            <div class="choix">
+              <label><input type="radio" name="profil" value="Particulier"><span>Particulier</span></label>
+              <label><input type="radio" name="profil" value="Indépendant"><span>Indépendant</span></label>
+              <label><input type="radio" name="profil" value="Entreprise"><span>Entreprise</span></label>
+            </div>
+            <p class="erreur" aria-live="polite"></p>
+          </fieldset>
+
+          <fieldset class="etape" hidden>
+            <legend>Quel jour vous conviendrait ?</legend>
+            <p class="etape__aide">Jours ouvrables à venir. Le cabinet confirme l’heure du rendez-vous.</p>
+            <div class="choix creneaux" data-creneaux></div>
+            <div class="choix moments">
+              <label><input type="radio" name="moment" value="le matin"><span>Le matin</span></label>
+              <label><input type="radio" name="moment" value="l’après-midi"><span>L’après-midi</span></label>
+            </div>
+            <p class="erreur" aria-live="polite"></p>
+          </fieldset>
+
+          <fieldset class="etape" hidden>
+            <legend>Vos coordonnées</legend>
+            <p class="etape__aide">Décrivez brièvement votre situation, sans joindre de pièce confidentielle.</p>
+            <div class="champs">
+              <div class="champ"><label for="rdv-nom">Nom et prénom</label><input id="rdv-nom" name="nom" autocomplete="name" required></div>
+              <div class="champ"><label for="rdv-mail">E-mail</label><input id="rdv-mail" name="mail" type="email" autocomplete="email" required></div>
+              <div class="champ"><label for="rdv-tel">Téléphone (facultatif)</label><input id="rdv-tel" name="tel" type="tel" autocomplete="tel"></div>
+              <div class="champ champ--large"><label for="rdv-message">Votre situation en quelques lignes (facultatif)</label><textarea id="rdv-message" name="message" maxlength="1200"></textarea></div>
+            </div>
+            <label class="consentement"><input type="checkbox" id="rdv-consentement"><span>J’accepte que ces données soient utilisées uniquement pour traiter ma demande de rendez-vous. <a class="lien-encre" href="/mentions-legales#confidentialite">Politique de confidentialité</a> (à compléter).</span></label>
+            <p class="erreur" aria-live="polite"></p>
+          </fieldset>
+
+          <div class="formulaire__nav">
+            <button type="button" class="bouton bouton--trait" data-prec hidden><span class="bouton__txt">Retour</span></button>
+            <button type="button" class="bouton" data-suiv><span class="bouton__txt">Continuer</span></button>
+            <button type="submit" class="bouton" data-envoyer hidden><span class="bouton__txt">Préparer la demande</span></button>
+          </div>
+          <p class="mention-maquette">Maquette : aucune donnée n’est envoyée.</p>
+        </form>
+
+        <div class="formulaire confirmation" hidden>
+          <div class="cachet" aria-hidden="true">
+            <svg viewBox="0 0 200 200"><defs><path id="cachet-rdv" d="M100,100 m-70,0 a70,70 0 1,1 140,0 a70,70 0 1,1 -140,0"/></defs><g filter="url(#grain-encre)"><circle cx="100" cy="100" r="94" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="100" cy="100" r="86" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="100" cy="100" r="54" fill="none" stroke="currentColor" stroke-width="1.2"/><text font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.6" fill="currentColor"><textPath href="#cachet-rdv">AVOCAT · BARREAU DE BRUXELLES · DEPUIS 2005 ·</textPath></text><text x="100" y="112" text-anchor="middle" font-family="Newsreader, Georgia, serif" font-style="italic" font-size="38" fill="currentColor">dbl</text></g></svg>
+          </div>
+          <h3 style="font-size:2.2rem">Demande préparée</h3>
+          <p>Sur le site définitif, le cabinet recevrait cette demande et vous recontacterait pour confirmer le rendez-vous.</p>
+          <dl data-recap></dl>
+          <button type="button" class="bouton bouton--trait" data-recommencer style="color:var(--encre)"><span class="bouton__txt">Nouvelle demande</span></button>
+          <p class="mention-maquette">Maquette : aucune donnée n’a été envoyée.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="gout">
+    <div class="pied__grille">
+      <div>
+        <h2>dbl</h2>
+        <p>Maître Ousmane Dambel, avocat au Barreau de Bruxelles</p>
+        <p>Avenue Paul-Henri Spaak 17/1, 1060 Bruxelles</p>
+        <p>BCE / TVA : BE0824.604.423</p>
+      </div>
+      <div>
+        <h3>Pages</h3>
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/matieres">Matières pratiquées</a></li>
+          <li><a href="/honoraires">Honoraires et rendez-vous</a></li>
+          <li><a href="/mentions-legales">Mentions légales et confidentialité</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="tel:+3225021055">Tél. +32 2 502 10 55</a></li>
+          <li><a href="tel:+32479702461">GSM +32 479 70 24 61</a></li>
+          <li><a href="mailto:info@dbl-avocat.be">info@dbl-avocat.be</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pied__bas">
+      <span>© 2026 Cabinet DBL Avocat</span>
+      <span>Maquette de travail, non indexée. Contenus repris du site actuel, à valider par Maître Dambel.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="barre-mobile" data-barre-mobile>
+  <a class="bouton" href="/honoraires#rendez-vous"><span class="bouton__txt">Rendez-vous</span></a>
+  <a class="bouton bouton--trait" href="tel:+3225021055"><span class="bouton__txt">Appeler</span></a>
+</div>
+<div class="folio" aria-hidden="true" data-folio-affiche></div>
+</body>
+</html>
