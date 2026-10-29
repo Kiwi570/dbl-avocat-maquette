@@ -160,6 +160,6 @@ export function initBureau(conteneur, { mobile = false } = {}) {
     demarrer() { etat.actif = true; etat.sale = true; demander(); },
     arreter() { etat.actif = false; },
     lumiere(x, y) { etat.cible[0] = x; etat.cible[1] = y; demander(); },
-    visibilite(v) { etat.visible = v; if (v) { etat.sale = true; demander(); } },
+    visibilite(v) { etat.visible = v; gl.canvas.style.visibility = v ? 'visible' : 'hidden'; if (v) { etat.sale = true; demander(); } },
   };
 }

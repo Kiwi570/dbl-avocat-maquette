@@ -23,7 +23,7 @@
 <link rel="preload" href="/assets/fonts/newsreader-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/newsreader-opsz-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/hanken-grotesk-wght.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=1">
+<link rel="stylesheet" href="/assets/css/site.css?v=2">
 <script>
 (function(d){var h=d.documentElement;h.classList.remove('no-js');h.classList.add('js','fonts-pending');var calme=false,arrivee=false;
 try{var c=localStorage.getItem('dbl-calme');calme=c==='1'||(c===null&&matchMedia('(prefers-reduced-motion: reduce)').matches);}catch(e){}
@@ -35,8 +35,8 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
 <script src="/assets/js/vendor/gsap.min.js" defer></script>
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/SplitText.min.js" defer></script>
-<link rel="modulepreload" href="/assets/js/gl.js?v=1">
-<script type="module" src="/assets/js/main.js?v=1"></script>
+<link rel="modulepreload" href="/assets/js/gl.js?v=2">
+<script type="module" src="/assets/js/main.js?v=2"></script>
 </head>
 <body>
 <a class="lien-evitement" href="#contenu">Aller au contenu</a>
@@ -102,9 +102,7 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
           <p class="couv-convention">Convention d’honoraires</p>
           <div class="lignes"><span></span><span></span><span></span></div>
           <div class="signature">
-            <div class="signature__ligne">Lu et approuvé
-              <svg viewBox="0 0 210 70"><path data-trace d="M6 48 C 22 14, 38 12, 42 38 S 56 66, 72 34 S 94 6, 104 38 S 124 58, 140 30 S 168 18, 204 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-            </div>
+            <div class="signature__bloc"><div class="signature__ligne"><svg viewBox="0 0 210 70"><path data-trace d="M6 48 C 22 14, 38 12, 42 38 S 56 66, 72 34 S 94 6, 104 38 S 124 58, 140 30 S 168 18, 204 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><span class="signature__label">Lu et approuvé</span></div>
           </div>
         </div>
       </div>
@@ -116,7 +114,7 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
       <h2 class="titre-section" id="t-mod" data-titre>Trois façons de fixer les honoraires</h2>
       <p class="chapeau" style="margin-top:.8em">Lors du premier entretien, les modalités d’intervention et de facturation vous sont expliquées. Les frais et débours éventuels liés au dossier sont précisés séparément.</p>
       <div class="modalites">
-        <div class="fiche">
+        <div class="fiche" data-incline>
           <button class="fiche__bouton" type="button" aria-pressed="false">
             <span class="fiche__face fiche__face--avant">
               <span class="fiche__titre">Au taux horaire</span>
@@ -130,7 +128,7 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
             </span>
           </button>
         </div>
-        <div class="fiche">
+        <div class="fiche" data-incline>
           <button class="fiche__bouton" type="button" aria-pressed="false">
             <span class="fiche__face fiche__face--avant">
               <span class="fiche__titre">Au forfait</span>
@@ -144,7 +142,7 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
             </span>
           </button>
         </div>
-        <div class="fiche">
+        <div class="fiche" data-incline>
           <button class="fiche__bouton" type="button" aria-pressed="false">
             <span class="fiche__face fiche__face--avant">
               <span class="fiche__titre">Autre modalité convenue</span>
@@ -211,7 +209,7 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
 
   <section class="section rdv s-papier" id="rendez-vous" data-folio="Rendez-vous" aria-labelledby="t-rdv">
     <div class="gout rdv__grille">
-      <div>
+      <div class="rdv__infos">
         <h2 class="titre-section" id="t-rdv" data-titre>Demander un rendez-vous</h2>
         <p class="chapeau" style="margin-top:.8em">Le cabinet reçoit sur rendez-vous, en français. Indiquez votre demande : le cabinet vous recontacte pour confirmer le jour et l’heure.</p>
         <div class="cadre-photo cadre-photo--32" style="margin-top:28px"><img src="/assets/img/rendezvous-salle-grand.webp" srcset="/assets/img/rendezvous-salle-petit.webp 600w, /assets/img/rendezvous-salle-grand.webp 1168w" sizes="(max-width: 899px) 92vw, 38vw" width="1168" height="778" alt="Salle de consultation avec deux fauteuils et une bibliothèque" loading="lazy"></div>
@@ -285,7 +283,7 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
 
         <div class="formulaire confirmation" hidden>
           <div class="cachet" aria-hidden="true">
-            <svg viewBox="0 0 200 200"><defs><path id="cachet-rdv" d="M100,100 m-70,0 a70,70 0 1,1 140,0 a70,70 0 1,1 -140,0"/></defs><g filter="url(#grain-encre)"><circle cx="100" cy="100" r="94" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="100" cy="100" r="86" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="100" cy="100" r="54" fill="none" stroke="currentColor" stroke-width="1.2"/><text font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.6" fill="currentColor"><textPath href="#cachet-rdv">AVOCAT · BARREAU DE BRUXELLES · DEPUIS 2005 ·</textPath></text><text x="100" y="112" text-anchor="middle" font-family="Newsreader, Georgia, serif" font-style="italic" font-size="38" fill="currentColor">dbl</text></g></svg>
+            <svg viewBox="0 0 200 200"><defs><path id="cachet-rdv" d="M100,100 m-70,0 a70,70 0 1,1 140,0 a70,70 0 1,1 -140,0"/></defs><g filter="url(#grain-encre)"><circle cx="100" cy="100" r="94" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="100" cy="100" r="86" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="100" cy="100" r="54" fill="none" stroke="currentColor" stroke-width="1.2"/><text font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="2.4" fill="currentColor"><textPath href="#cachet-rdv">AVOCAT · BARREAU DE BRUXELLES · DEPUIS 2005 ·</textPath></text><text x="100" y="112" text-anchor="middle" font-family="Newsreader, Georgia, serif" font-style="italic" font-size="38" fill="currentColor">dbl</text></g></svg>
           </div>
           <h3 style="font-size:2.2rem">Demande préparée</h3>
           <p>Sur le site définitif, le cabinet recevrait cette demande et vous recontacterait pour confirmer le rendez-vous.</p>
@@ -304,6 +302,7 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
     <div class="pied__grille">
       <div>
         <h2>dbl</h2>
+        <p class="pied__devise">Écouter. Conseiller. Défendre.</p>
         <p>Maître Ousmane Dambel, avocat au Barreau de Bruxelles</p>
         <p>Avenue Paul-Henri Spaak 17/1, 1060 Bruxelles</p>
         <p>BCE / TVA : BE0824.604.423</p>

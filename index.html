@@ -23,7 +23,7 @@
 <link rel="preload" href="/assets/fonts/newsreader-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/newsreader-opsz-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/hanken-grotesk-wght.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=1">
+<link rel="stylesheet" href="/assets/css/site.css?v=2">
 <script>
 (function(d){var h=d.documentElement;h.classList.remove('no-js');h.classList.add('js','fonts-pending');var calme=false,arrivee=false;
 try{var c=localStorage.getItem('dbl-calme');calme=c==='1'||(c===null&&matchMedia('(prefers-reduced-motion: reduce)').matches);}catch(e){}
@@ -35,8 +35,8 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
 <script src="/assets/js/vendor/gsap.min.js" defer></script>
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/SplitText.min.js" defer></script>
-<link rel="modulepreload" href="/assets/js/gl.js?v=1">
-<script type="module" src="/assets/js/main.js?v=1"></script>
+<link rel="modulepreload" href="/assets/js/gl.js?v=2">
+<script type="module" src="/assets/js/main.js?v=2"></script>
 </head>
 <body>
 <a class="lien-evitement" href="#contenu">Aller au contenu</a>
@@ -97,7 +97,7 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
 <main id="contenu">
 
   <!-- 1. Une -->
-  <section class="une s-nuit" data-folio="Écouter, conseiller, défendre" aria-labelledby="titre-une">
+  <section class="une s-nuit" id="une" data-folio="Écouter, conseiller, défendre" aria-labelledby="titre-une">
     <div class="gout une__grille">
       <div class="une__texte">
         <h1 class="une__titre" id="titre-une"><span>Écouter.</span><span>Conseiller.</span><span>Défendre.</span></h1>
@@ -122,6 +122,7 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
         <div class="chemise-une__couverture" aria-hidden="true"></div>
       </div>
     </div>
+    <a class="defiler" href="#cabinet" aria-label="Faire défiler jusqu’au cabinet"><span class="defiler__trait" aria-hidden="true"></span><span class="defiler__txt">Faire défiler</span></a>
   </section>
 
   <!-- 2. Le cabinet -->
@@ -159,12 +160,14 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
       <p class="chapeau">Le cabinet conseille, assiste et représente particuliers, indépendants et entreprises, en conseil comme devant les juridictions.</p>
       <p class="matieres__compteur" aria-hidden="true"><span data-compteur-matiere>01</span> / 05</p>
     </div>
+    <div class="matieres__progression" aria-hidden="true"><span></span></div>
     <div class="matieres__piste">
-      <a class="chemise" href="/matieres#etrangers" style="--teinte:#c9a672" data-curseur="lire">
+      <a class="chemise" href="/matieres#etrangers" aria-label="Droit des étrangers : Séjour, regroupement familial et recours, avec une attention particulière à la situation personnelle et familiale. Lire la fiche" style="--teinte:#c9a672" data-curseur="lire">
         <span class="chemise__onglet">Droit des étrangers</span>
         <div class="chemise__corps">
           <div class="chemise__feuille">
-            <div class="chemise__contenu"><h3>Séjour, famille, recours</h3>
+            <div class="chemise__contenu"><p class="chemise__titre">Droit des étrangers</p>
+            <p class="chemise__desc">Séjour, regroupement familial et recours, avec une attention particulière à la situation personnelle et familiale.</p>
             <ul>
               <li>Séjour pour raisons humanitaires <span class="reference">9bis</span></li>
               <li>Regroupement familial</li>
@@ -176,15 +179,16 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
           </div>
           <div class="chemise__couverture">
             <div class="chemise__couverture-img"><img src="/assets/img/matiere-etrangers-petit.webp" srcset="/assets/img/matiere-etrangers-petit.webp 480w, /assets/img/matiere-etrangers-grand.webp 784w" sizes="(max-width: 899px) 90vw, 30vw" width="784" height="980" alt="" loading="lazy"></div>
-            <h3>Droit des étrangers</h3>
+            <p class="chemise__couv-titre">Droit des étrangers</p>
           </div>
         </div>
       </a>
-      <a class="chemise" href="/matieres#affaires" style="--teinte:#a9b6c6" data-curseur="lire">
+      <a class="chemise" href="/matieres#affaires" aria-label="Droit des affaires : Toutes les étapes de la vie de l’entreprise, de la création à la transmission. Lire la fiche" style="--teinte:#a9b6c6" data-curseur="lire">
         <span class="chemise__onglet">Droit des affaires</span>
         <div class="chemise__corps">
           <div class="chemise__feuille">
-            <div class="chemise__contenu"><h3>De la création à la transmission</h3>
+            <div class="chemise__contenu"><p class="chemise__titre">Droit des affaires</p>
+            <p class="chemise__desc">Toutes les étapes de la vie de l’entreprise, de la création à la transmission.</p>
             <ul>
               <li>Création et transmission d’entreprise</li>
               <li>Analyse et rédaction de contrats</li>
@@ -195,15 +199,16 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
           </div>
           <div class="chemise__couverture">
             <div class="chemise__couverture-img"><img src="/assets/img/matiere-affaires-petit.webp" srcset="/assets/img/matiere-affaires-petit.webp 480w, /assets/img/matiere-affaires-grand.webp 784w" sizes="(max-width: 899px) 90vw, 30vw" width="784" height="980" alt="" loading="lazy"></div>
-            <h3>Droit des affaires</h3>
+            <p class="chemise__couv-titre">Droit des affaires</p>
           </div>
         </div>
       </a>
-      <a class="chemise" href="/matieres#immobilier" style="--teinte:#b7b48f" data-curseur="lire">
+      <a class="chemise" href="/matieres#immobilier" aria-label="Droit immobilier : Propriétaires, locataires et investisseurs : conseil et défense. Lire la fiche" style="--teinte:#b7b48f" data-curseur="lire">
         <span class="chemise__onglet">Droit immobilier</span>
         <div class="chemise__corps">
           <div class="chemise__feuille">
-            <div class="chemise__contenu"><h3>Propriétaires, locataires, investisseurs</h3>
+            <div class="chemise__contenu"><p class="chemise__titre">Droit immobilier</p>
+            <p class="chemise__desc">Propriétaires, locataires et investisseurs : conseil et défense.</p>
             <ul>
               <li>Vente</li>
               <li>Location et baux</li>
@@ -214,15 +219,16 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
           </div>
           <div class="chemise__couverture">
             <div class="chemise__couverture-img"><img src="/assets/img/matiere-immobilier-petit.webp" srcset="/assets/img/matiere-immobilier-petit.webp 480w, /assets/img/matiere-immobilier-grand.webp 784w" sizes="(max-width: 899px) 90vw, 30vw" width="784" height="980" alt="" loading="lazy"></div>
-            <h3>Droit immobilier</h3>
+            <p class="chemise__couv-titre">Droit immobilier</p>
           </div>
         </div>
       </a>
-      <a class="chemise" href="/matieres#travail" style="--teinte:#cfa58f" data-curseur="lire">
+      <a class="chemise" href="/matieres#travail" aria-label="Droit du travail : Conseil et représentation devant le tribunal du travail. Lire la fiche" style="--teinte:#cfa58f" data-curseur="lire">
         <span class="chemise__onglet">Droit du travail</span>
         <div class="chemise__corps">
           <div class="chemise__feuille">
-            <div class="chemise__contenu"><h3>Devant le tribunal du travail</h3>
+            <div class="chemise__contenu"><p class="chemise__titre">Droit du travail</p>
+            <p class="chemise__desc">Conseil et représentation devant le tribunal du travail.</p>
             <ul>
               <li>Licenciement et rupture négociée</li>
               <li>Contrat et conditions de travail</li>
@@ -233,15 +239,16 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
           </div>
           <div class="chemise__couverture">
             <div class="chemise__couverture-img"><img src="/assets/img/matiere-travail-petit.webp" srcset="/assets/img/matiere-travail-petit.webp 480w, /assets/img/matiere-travail-grand.webp 784w" sizes="(max-width: 899px) 90vw, 30vw" width="784" height="980" alt="" loading="lazy"></div>
-            <h3>Droit du travail</h3>
+            <p class="chemise__couv-titre">Droit du travail</p>
           </div>
         </div>
       </a>
-      <a class="chemise" href="/matieres#famille" style="--teinte:#d3b867" data-curseur="lire">
+      <a class="chemise" href="/matieres#famille" aria-label="Droit de la famille : Un accompagnement attentif dans les moments difficiles. Lire la fiche" style="--teinte:#d3b867" data-curseur="lire">
         <span class="chemise__onglet">Droit de la famille</span>
         <div class="chemise__corps">
           <div class="chemise__feuille">
-            <div class="chemise__contenu"><h3>Dans les moments difficiles</h3>
+            <div class="chemise__contenu"><p class="chemise__titre">Droit de la famille</p>
+            <p class="chemise__desc">Un accompagnement attentif dans les moments difficiles.</p>
             <ul>
               <li>Divorce et séparation</li>
               <li>Garde d’enfants</li>
@@ -251,7 +258,7 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
           </div>
           <div class="chemise__couverture">
             <div class="chemise__couverture-img"><img src="/assets/img/matiere-famille-petit.webp" srcset="/assets/img/matiere-famille-petit.webp 480w, /assets/img/matiere-famille-grand.webp 784w" sizes="(max-width: 899px) 90vw, 30vw" width="784" height="980" alt="" loading="lazy"></div>
-            <h3>Droit de la famille</h3>
+            <p class="chemise__couv-titre">Droit de la famille</p>
           </div>
         </div>
       </a>
@@ -337,9 +344,7 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
           <div><div class="compteur" data-compteur="800-3000">800 – 3 000 €</div><p>Forfaits selon la procédure</p></div>
         </div>
         <div class="signature">
-          <div class="signature__ligne">Convention d’honoraires
-            <svg viewBox="0 0 210 70" aria-hidden="true"><path data-trace d="M6 48 C 22 14, 38 12, 42 38 S 56 66, 72 34 S 94 6, 104 38 S 124 58, 140 30 S 168 18, 204 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
+          <div class="signature__bloc"><div class="signature__ligne"><svg viewBox="0 0 210 70" aria-hidden="true"><path data-trace d="M6 48 C 22 14, 38 12, 42 38 S 56 66, 72 34 S 94 6, 104 38 S 124 58, 140 30 S 168 18, 204 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><span class="signature__label">Convention d’honoraires</span></div>
           <a class="lien-encre" href="/honoraires" style="font-weight:600">Voir le détail des honoraires</a>
         </div>
         <p class="postit postit--bloc"><strong>À préciser :</strong> montants hors TVA ou TVA comprise.</p>
@@ -430,6 +435,7 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
     <div class="pied__grille">
       <div>
         <h2>dbl</h2>
+        <p class="pied__devise">Écouter. Conseiller. Défendre.</p>
         <p>Maître Ousmane Dambel, avocat au Barreau de Bruxelles</p>
         <p>Avenue Paul-Henri Spaak 17/1, 1060 Bruxelles</p>
         <p>BCE / TVA : BE0824.604.423</p>

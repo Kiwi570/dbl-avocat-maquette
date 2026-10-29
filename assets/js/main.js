@@ -1,5 +1,5 @@
 /* DBL Avocat — maquette « Chemise de dossier » */
-import { initBureau } from './gl.js?v=1';
+import { initBureau } from './gl.js?v=2';
 
 const html = document.documentElement;
 const page = html.dataset.page || '';
@@ -267,6 +267,7 @@ function initCurseur() {
   const c = $('.curseur');
   if (!c) return;
   html.classList.add('curseur-actif');
+  c.style.opacity = '0';
   const point = $('.curseur__point', c);
   const anneau = $('.curseur__anneau', c);
   const label = $('.curseur__label', c);
@@ -536,18 +537,18 @@ function introEtUne() {
     const texte = $('.intro-dbl text');
     const ligne = $('.intro-ecran__ligne');
     const c = $('.intro-ecran .cachet');
-    tl.to(texte, { strokeDashoffset: 0, duration: 0.75, ease: 'power2.inOut' }, 0)
-      .to(texte, { fillOpacity: 1, duration: 0.35, ease: 'power1.out' }, 0.5)
-      .to(ligne, { opacity: 1, duration: 0.35 }, 0.3)
-      .fromTo(c, { scale: 2.1, opacity: 0, rotate: 18 }, { scale: 1, opacity: 1, rotate: -12, duration: 0.32, ease: 'back.out(2.4)' }, 0.62)
-      .to(couv, { y: 3, duration: 0.05, yoyo: true, repeat: 1 }, 0.9)
-      .to(couv, { rotateX: 96, opacity: 0.2, duration: 0.7, ease: 'power3.in' }, 1.0)
+    tl.to(texte, { strokeDashoffset: 0, duration: 0.65, ease: 'power2.inOut' }, 0)
+      .to(texte, { fillOpacity: 1, duration: 0.3, ease: 'power1.out' }, 0.42)
+      .to(ligne, { opacity: 1, duration: 0.3 }, 0.25)
+      .fromTo(c, { scale: 2.1, opacity: 0, rotate: 18 }, { scale: 1, opacity: 1, rotate: -12, duration: 0.3, ease: 'back.out(2.4)' }, 0.52)
+      .to(couv, { y: 3, duration: 0.05, yoyo: true, repeat: 1 }, 0.78)
+      .to(couv, { rotateX: 96, opacity: 0.2, duration: 0.62, ease: 'power3.in' }, 0.86)
       .add(() => {
         ecran.style.display = 'none';
         html.classList.remove('intro');
         try { sessionStorage.setItem('dbl-intro', '1'); } catch (e) {}
-      }, 1.7);
-    debut = 1.0;
+      }, 1.48);
+    debut = 0.86;
   }
   tl.to(mots, { keyframes: { opacity: [0, 1, 1], scale: [1.18, 0.98, 1] }, duration: 0.42, ease: 'power3.out', stagger: 0.14, transformOrigin: '0% 70%' }, debut + 0.05)
     .to(dos, { opacity: 1, y: 0, rotate: -1.5, duration: 0.8, ease: 'power3.out' }, debut + 0.05)
@@ -557,6 +558,16 @@ function introEtUne() {
     .to([qui, actions], { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1 }, debut + 0.4);
   if (couverture) {
     gsap.set(couverture, { opacity: 0 });
+  }
+  if (pointeurFin && dos) {
+    gsap.set(dos, { transformPerspective: 1100 });
+    const rx = gsap.quickTo(dos, 'rotationX', { duration: 0.9, ease: 'power3.out' });
+    const ry = gsap.quickTo(dos, 'rotationY', { duration: 0.9, ease: 'power3.out' });
+    $('.une').addEventListener('pointermove', (e) => {
+      ry((e.clientX / window.innerWidth - 0.5) * 10);
+      rx(-(e.clientY / window.innerHeight - 0.5) * 7);
+    });
+    $('.une').addEventListener('pointerleave', () => { rx(0); ry(0); });
   }
   // défilement : la chemise remonte, la photo bascule légèrement
   gsap.to(chemise, {
@@ -589,6 +600,9 @@ function matieresAccueil() {
       const derniere = cartes[cartes.length - 1];
       return Math.max(0, derniere.offsetLeft + derniere.offsetWidth / 2 - window.innerWidth / 2);
     };
+    const survol = cartes.map(() => ({ v: 0 }));
+    const barre = $('.matieres__progression span', section);
+    let tween = null;
     const maj = () => {
       const centre = window.innerWidth * 0.5;
       let meilleur = 0, meilleurP = -1;
@@ -596,23 +610,40 @@ function matieresAccueil() {
         const r = c.getBoundingClientRect();
         const cx = r.left + r.width / 2;
         const p = 1 - borne(Math.abs(cx - centre) / (r.width * 1.15), 0, 1);
-        const e = p * p * (3 - 2 * p);
+        const e = Math.max(p * p * (3 - 2 * p), survol[i].v * 0.32);
         setters[i](ANGLE * e);
-        if (contenus[i]) contenus[i].style.opacity = borne((p - 0.45) / 0.35, 0, 1).toFixed(3);
+        if (contenus[i]) contenus[i].style.opacity = borne((Math.max(p, survol[i].v * 0.6) - 0.45) / 0.35, 0, 1).toFixed(3);
         if (p > meilleurP) { meilleurP = p; meilleur = i; }
       });
       if (compteur) compteur.textContent = String(meilleur + 1).padStart(2, '0');
+      if (barre && tween) barre.style.transform = `scaleX(${tween.progress().toFixed(4)})`;
     };
-    const tween = gsap.to(piste, {
-      x: () => -distance(), ease: 'none',
+    tween = gsap.to(piste, {
+      x: () => -distance(), ease: 'none', onUpdate: maj,
       scrollTrigger: {
         trigger: section, start: 'top top', end: () => '+=' + distance(), pin: true, scrub: 0.8,
-        invalidateOnRefresh: true, onUpdate: maj, onRefresh: maj, anticipatePin: 1,
+        invalidateOnRefresh: true, onRefresh: maj, anticipatePin: 1,
       },
     });
-    gsap.ticker.add(maj);
+    const ecouteurs = [];
+    cartes.forEach((c, i) => {
+      const entrer = () => gsap.to(survol[i], { v: 1, duration: 0.45, ease: 'power2.out', onUpdate: maj });
+      const sortir = () => gsap.to(survol[i], { v: 0, duration: 0.5, ease: 'power2.out', onUpdate: maj });
+      const focus = () => {
+        const st = tween.scrollTrigger;
+        const d = distance();
+        if (!st || !d) return;
+        const part = borne((c.offsetLeft + c.offsetWidth / 2 - window.innerWidth / 2) / d, 0, 1);
+        window.scrollTo(0, st.start + part * (st.end - st.start));
+      };
+      c.addEventListener('pointerenter', entrer);
+      c.addEventListener('pointerleave', sortir);
+      c.addEventListener('focus', focus);
+      ecouteurs.push([c, entrer, sortir, focus]);
+    });
+    maj();
     return () => {
-      gsap.ticker.remove(maj);
+      ecouteurs.forEach(([c, a, b, f]) => { c.removeEventListener('pointerenter', a); c.removeEventListener('pointerleave', b); c.removeEventListener('focus', f); });
       contenus.forEach((c) => c && (c.style.opacity = ''));
       tween.scrollTrigger && tween.scrollTrigger.kill();
       tween.kill();
