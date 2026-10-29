@@ -30,9 +30,14 @@ Site statique (HTML, CSS, JavaScript) sans étape de construction, prêt pour Ve
 
 ## Images
 
-- `portrait-*.webp` et `bureau-*.webp` : **cartes provisoires**, à remplacer par les vraies photos du site actuel.
+- Photos réelles du site actuel :
+  - `portrait-*.webp` : portrait officiel de Maître Dambel (recadré en 4:5) ;
+  - `bureau-*.webp` : le bureau du cabinet, recadré sur la bibliothèque pour qu'aucune étiquette de dossier ne soit lisible (secret professionnel), bas de l'image adouci ;
+  - `palais-justice-*.webp` : le Palais de justice de Bruxelles, place Poelaert.
+- Logo : `logo-od.webp` (monogramme, fond transparent) et `logo-complet.webp`, extraits du logo « OD, Maître Ousmane Dambel ». Un fichier vectoriel (SVG ou PDF) du logo serait préférable pour la version définitive.
+- Favicons : `favicon-32.png`, `apple-touch-icon.png`.
 - Toutes les autres images : générées avec Grok (scènes, aucune personne, aucun texte).
-- Images de partage : `assets/og/*.jpg` (1200×630), à recomposer avec le vrai portrait et le logo.
+- Images de partage : `assets/og/*.jpg` (1200×630), composées avec le portrait, le bureau et le monogramme.
 
 ## À compléter avant la mise en ligne définitive
 

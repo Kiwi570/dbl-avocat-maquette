@@ -189,7 +189,8 @@ html.calme .surligne, html.no-js .surligne { --hl: 1; }
 }
 .entete__in { display: flex; align-items: center; gap: clamp(10px, 2vw, 28px); min-height: 64px; }
 .marque { display: inline-flex; align-items: baseline; gap: .55em; text-decoration: none; color: inherit; flex: 0 0 auto; min-height: 44px; align-items: center; }
-.marque__dbl { font-family: var(--f-titre); font-style: italic; font-size: 1.9rem; line-height: 1; font-variation-settings: "opsz" 48; letter-spacing: -.02em; }
+.marque__badge { width: 44px; height: 44px; border-radius: 50%; background: var(--papier); display: grid; place-items: center; flex: 0 0 auto; box-shadow: 0 0 0 1px rgba(200,166,116,.45), 0 4px 10px -4px rgba(0,0,0,.5); }
+.marque__badge img { width: 31px; height: auto; display: block; }
 .marque__nom { font-size: .82rem; line-height: 1.2; color: var(--sur-nuit-2); }
 .marque__nom b { display: block; color: var(--sur-nuit); font-weight: 600; }
 .nav { margin-left: auto; display: flex; align-items: center; gap: clamp(8px, 1.6vw, 24px); }
@@ -255,8 +256,8 @@ html.intro .intro-ecran {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .38 0 0 0 0 .28 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 .intro-ecran__contenu { position: relative; display: grid; justify-items: center; gap: 18px; }
-.intro-ecran svg.intro-dbl { width: min(46vw, 340px); height: auto; overflow: visible; }
-.intro-dbl text { font-family: var(--f-titre); font-style: italic; font-size: 150px; font-variation-settings: "opsz" 72; fill: var(--encre); fill-opacity: 0; stroke: var(--encre); stroke-width: 1.2; stroke-dasharray: 900; stroke-dashoffset: 900; }
+.intro-ecran svg.intro-dbl { width: min(72vw, 440px); height: auto; overflow: visible; }
+.intro-dbl text { font-family: var(--f-titre); font-style: italic; font-size: 132px; font-variation-settings: "opsz" 72; fill: var(--encre); fill-opacity: 0; stroke: var(--encre); stroke-width: 1.2; stroke-dasharray: 900; stroke-dashoffset: 900; }
 .intro-ecran .cachet { position: absolute; width: clamp(110px, 15vw, 170px); right: -38%; top: -8%; opacity: 0; mix-blend-mode: multiply; }
 .intro-ecran__ligne { font-size: .95rem; color: var(--graphite); opacity: 0; }
 
@@ -316,6 +317,8 @@ html.calme .defiler__trait::after { animation: none; transform: none; }
 .cabinet__repere div { min-width: 9em; }
 .cabinet__repere dt { font-family: var(--f-mono); font-size: .76rem; color: var(--graphite); }
 .cabinet__repere dd { margin: .1em 0 0; font-family: var(--f-titre); font-size: 1.45rem; line-height: 1.15; }
+.cabinet__ouvrage { margin: 18px 0 0; font-size: 1rem; line-height: 1.5; color: var(--graphite); max-width: 36em; }
+.cabinet__ouvrage cite { font-style: italic; font-family: var(--f-titre); font-size: 1.08em; color: var(--encre); }
 .devise { font-family: var(--f-titre); font-style: italic; font-size: clamp(1.4rem, 2.2vw, 2rem); margin-top: 1.1em; }
 
 /* ---------- Matières (accueil, galerie horizontale) ---------- */
@@ -501,6 +504,8 @@ html.calme .garde { --hl: 1; }
 .pied h2 { font-family: var(--f-titre); font-style: italic; font-size: 2.4rem; color: var(--sur-nuit); margin-bottom: .2em; }
 .pied h3 { font-family: var(--f-mono); font-size: .78rem; font-weight: 400; color: var(--sur-nuit); margin-bottom: .8em; }
 .pied p { margin: 0 0 .4em; }
+.pied__carte { width: min(100%, 250px); background: var(--papier); border-radius: 3px; padding: 18px 22px 14px; margin-bottom: 18px; box-shadow: 0 20px 40px -24px rgba(0,0,0,.8); transform: rotate(-1.2deg); }
+.pied__carte img { width: 100%; height: auto; display: block; }
 .pied .pied__devise { font-family: var(--f-titre); font-style: italic; font-size: 1.3rem; color: var(--sur-nuit); margin-bottom: 1em; }
 .pied a { text-decoration: none; }
 .pied a:hover { color: var(--sur-nuit); }
@@ -558,9 +563,11 @@ html.calme .garde { --hl: 1; }
 .dossier__cta { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 
 .juridictions { overflow: hidden; position: relative; padding-block: clamp(80px, 12vh, 140px); }
-.juridictions__fond { position: absolute; inset: 0; z-index: 0; }
-.juridictions__fond img { width: 100%; height: 100%; object-fit: cover; opacity: .28; }
-.juridictions__fond::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,27,48,.85), rgba(16,27,48,.55) 50%, rgba(16,27,48,.9)); }
+.juridictions__grille { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: clamp(28px, 5vw, 80px); align-items: center; }
+.juridictions__photo { margin: 0; transform: rotate(-2deg); max-width: 380px; justify-self: end; }
+.juridictions__cadre { overflow: hidden; aspect-ratio: 4 / 5; background: var(--papier-2); }
+.juridictions__cadre img { width: 100%; height: 118%; object-fit: cover; }
+.juridictions__photo figcaption { font-family: var(--f-mono); font-size: .75rem; color: var(--graphite); padding: 10px 2px 2px; }
 .juridictions .gout { position: relative; z-index: 1; }
 .frise { display: flex; gap: clamp(14px, 2vw, 28px); margin-top: 44px; width: max-content; padding-left: var(--gout); position: relative; z-index: 1; will-change: transform; }
 .tampon { flex: 0 0 auto; border: 2px solid var(--cachet-2); color: #f0c7c4; border-radius: 6px; padding: 14px 22px; font-family: var(--f-mono); font-size: clamp(.82rem, 1.1vw, 1rem); letter-spacing: .04em; background: rgba(140,29,36,.12); transform: rotate(var(--r, -2deg)); white-space: nowrap; }
@@ -679,6 +686,8 @@ html.calme .garde { --hl: 1; }
   .menu-bouton { display: inline-flex; align-items: center; justify-content: center; }
 }
 @media (max-width: 899px) {
+  .juridictions__grille { grid-template-columns: minmax(0, 1fr); }
+  .juridictions__photo { justify-self: center; max-width: 300px; }
   .tarifs .cadre-photo--45 { aspect-ratio: 16 / 10; }
   .fiche, .fiche__bouton { min-height: 210px; }
   .rdv__grille { row-gap: 22px; }
@@ -739,7 +748,8 @@ html.calme .garde { --hl: 1; }
 }
 @media (max-width: 380px) {
   .calme-bascule { padding: 0 .65em; }
-  .marque__dbl { font-size: 1.6rem; }
+  .marque__badge { width: 40px; height: 40px; }
+  .marque__badge img { width: 28px; }
   .une__titre { font-size: 3rem; }
 }
 

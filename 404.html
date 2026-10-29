@@ -7,7 +7,8 @@
 <meta name="description" content="Cette page n’existe pas ou a été déplacée.">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#101b30">
-<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_BE">
 <meta property="og:site_name" content="Cabinet DBL Avocat">
@@ -23,7 +24,7 @@
 <link rel="preload" href="/assets/fonts/newsreader-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/newsreader-opsz-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/hanken-grotesk-wght.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=2">
+<link rel="stylesheet" href="/assets/css/site.css?v=3">
 <script>
 (function(d){var h=d.documentElement;h.classList.remove('no-js');h.classList.add('js','fonts-pending');var calme=false,arrivee=false;
 try{var c=localStorage.getItem('dbl-calme');calme=c==='1'||(c===null&&matchMedia('(prefers-reduced-motion: reduce)').matches);}catch(e){}
@@ -35,8 +36,8 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
 <script src="/assets/js/vendor/gsap.min.js" defer></script>
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/vendor/SplitText.min.js" defer></script>
-<link rel="modulepreload" href="/assets/js/gl.js?v=2">
-<script type="module" src="/assets/js/main.js?v=2"></script>
+<link rel="modulepreload" href="/assets/js/gl.js?v=3">
+<script type="module" src="/assets/js/main.js?v=3"></script>
 </head>
 <body>
 <a class="lien-evitement" href="#contenu">Aller au contenu</a>
@@ -53,7 +54,7 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
 <header class="entete">
   <div class="gout entete__in">
     <a class="marque" href="/" aria-label="Cabinet DBL Avocat, accueil">
-      <span class="marque__dbl">dbl</span>
+      <span class="marque__badge"><img src="/assets/img/logo-od.webp" width="302" height="240" alt=""></span>
       <span class="marque__nom"><b>Maître Ousmane Dambel</b>Avocat au Barreau de Bruxelles</span>
     </a>
     <nav class="nav" aria-label="Navigation principale">
@@ -104,7 +105,8 @@ setTimeout(function(){h.classList.remove('fonts-pending')},1600);})(document);
   <div class="gout">
     <div class="pied__grille">
       <div>
-        <h2>dbl</h2>
+        <h2 class="visuellement-cache">Cabinet de Maître Ousmane Dambel</h2>
+        <div class="pied__carte"><img src="/assets/img/logo-complet.webp" width="640" height="580" alt="Logo : Maître Ousmane Dambel, avocat au Barreau de Bruxelles" loading="lazy"></div>
         <p class="pied__devise">Écouter. Conseiller. Défendre.</p>
         <p>Maître Ousmane Dambel, avocat au Barreau de Bruxelles</p>
         <p>Avenue Paul-Henri Spaak 17/1, 1060 Bruxelles</p>

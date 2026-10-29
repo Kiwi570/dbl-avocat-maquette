@@ -1,5 +1,5 @@
 /* DBL Avocat — maquette « Chemise de dossier » */
-import { initBureau } from './gl.js?v=2';
+import { initBureau } from './gl.js?v=3';
 
 const html = document.documentElement;
 const page = html.dataset.page || '';
